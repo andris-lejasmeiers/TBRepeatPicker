@@ -33,7 +33,7 @@ class DemoViewController: UIViewController, TBRepeatPickerDelegate, SwitchLangua
     private func updateLanguageTitle() {
         let languageIndex = languages.indexOf(language)
         let languageTitle = languageStrings[languageIndex!]
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: languageTitle, style: .Plain, target: self, action: "switchLanguage")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: languageTitle, style: .Plain, target: self, action: #selector(switchLanguage))
     }
     
     func switchLanguage() {
