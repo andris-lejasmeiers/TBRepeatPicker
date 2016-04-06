@@ -10,23 +10,22 @@ import UIKit
 
 private let TBRPPresetRepeatCellID = "TBRPPresetRepeatCell"
 
-@objc protocol TBRepeatPickerDelegate {
+@objc public protocol TBRepeatPickerDelegate {
     func didPickRecurrence(recurrence: TBRecurrence?, repeatPicker: TBRepeatPicker)
 }
 
 public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeatControllerDelegate {
     // MARK: - Public properties
-    var occurrenceDate = NSDate()
-    var tintColor = UIColor.blueColor()
-    var language: TBRPLanguage = .English
-    var delegate: TBRepeatPickerDelegate?
+    public var occurrenceDate = NSDate()
+    public var language: TBRPLanguage = .English
+    public var delegate: TBRepeatPickerDelegate?
     
-    var recurrence: TBRecurrence? {
+    public var recurrence: TBRecurrence? {
         didSet {
             setupSelectedIndexPath(recurrence)
         }
     }
-    var selectedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+    public var selectedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     
     // MARK: - Private properties
     private var recurrenceBackup: TBRecurrence?
@@ -43,9 +42,6 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
     private func commonInit() {
         internationalControl = TBRPInternationalControl(language: language)
         navigationItem.title = internationalControl?.localized("TBRPPresetRepeatController.navigation.title", comment: "Repeat")
-        
-        navigationController?.navigationBar.tintColor = tintColor
-        tableView.tintColor = tintColor
         
         presetRepeats = TBRPHelper.presetRepeats(language)
         
@@ -177,7 +173,7 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             cell?.textLabel?.text = presetRepeats[indexPath.row]
         }
         
-        cell?.imageView?.image = UIImage(named: "TBRP-Checkmark")?.imageWithRenderingMode(.AlwaysTemplate)
+        cell?.imageView?.image = UIImage(named: "TBRP-Checkmark", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)?.imageWithRenderingMode(.AlwaysTemplate)
         
         if indexPath == selectedIndexPath {
             cell?.imageView?.hidden = false
@@ -201,7 +197,6 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
         if indexPath.section == 1 {
             let customRepeatController = TBRPCustomRepeatController(style: .Grouped)
             customRepeatController.occurrenceDate = occurrenceDate
-            customRepeatController.tintColor = tintColor
             customRepeatController.language = language
             
             if let _ = recurrence {

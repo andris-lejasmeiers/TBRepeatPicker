@@ -16,7 +16,7 @@ let TBRPTopSeparatorIdentifier = "TBRPTopSeparator"
 let TBRPBottomSeparatorIdentifier = "TBRPBottomSeparator"
 let TBRPSeparatorLineWidth: CGFloat = 0.5
 
-class TBRPHelper {
+public class TBRPHelper {
     class func leadingMargin() -> CGFloat {
         if TBRPScreenWidth == iPhone6PlusScreenWidth {
             return 20.0
@@ -120,7 +120,7 @@ class TBRPHelper {
         return [internationalControl.localized("TBRPHelper.numbersInWeekPicker.first", comment: "first"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.second", comment: "second"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.third", comment: "third"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.fourth", comment: "fourth"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.fifth", comment: "fifth"), internationalControl.localized("TBRPHelper.numbersInWeekPicker.last", comment: "last")]
     }
     
-    class func recurrenceString(recurrence: TBRecurrence, occurrenceDate: NSDate, language: TBRPLanguage) -> String? {
+    public class func recurrenceString(recurrence: TBRecurrence, occurrenceDate: NSDate, language: TBRPLanguage) -> String? {
         let internationalControl = TBRPInternationalControl(language: language)
         
         var unitString: String?

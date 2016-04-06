@@ -40,16 +40,14 @@ public class TBRepeatPicker: TBRPPresetRepeatController  {
       * TBRPLanguage.TraditionalChinese
       * TBRPLanguage.Korean
       * TBRPLanguage.Japanese
-    - Parameter tintColor: A tint color which will be used in navigation bar, tableView, and the highlighted items.
     
     - Returns: An initialized repeat picker object.
     */
-    public class func initPicker(occurrenceDate: NSDate, language: TBRPLanguage, tintColor: UIColor) -> TBRepeatPicker {
+    public class func initPicker(occurrenceDate: NSDate, language: TBRPLanguage) -> TBRepeatPicker {
         let repeatPicker = TBRepeatPicker.init(style: .Grouped)
         
         repeatPicker.occurrenceDate = occurrenceDate
         repeatPicker.language = language
-        repeatPicker.tintColor = tintColor
         
         return repeatPicker
     }

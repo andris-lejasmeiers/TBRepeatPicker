@@ -20,7 +20,6 @@ protocol TBRPCustomRepeatControllerDelegate {
 class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate, TBRPSwitchCellDelegate, TBRPCollectionViewCellDelegate {
     // MARK: - Public properties
     var occurrenceDate = NSDate()
-    var tintColor = UIColor.blueColor()
     var language: TBRPLanguage = .English
     var delegate: TBRPCustomRepeatControllerDelegate?
     
@@ -128,8 +127,6 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
         internationalControl = TBRPInternationalControl(language: language)
         navigationItem.title = internationalControl?.localized("TBRPPresetRepeatController.textLabel.custom", comment: "Custom")
         
-        navigationController?.navigationBar.tintColor = tintColor
-        tableView.tintColor = tintColor
         tableView.separatorStyle = .None
         
         frequencies = TBRPHelper.frequencies(language)
@@ -215,9 +212,9 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
     
     private func updateDetailTextColor() {
         if repeatPickerIndexPath == NSIndexPath(forRow: 1, inSection: 0) {
-            frequencyTitleCell?.detailTextLabel?.textColor = tintColor
+            frequencyTitleCell?.detailTextLabel?.textColor = view.tintColor
         } else if repeatPickerIndexPath == NSIndexPath(forRow: 2, inSection: 0) {
-            intervalTitleCell?.detailTextLabel?.textColor = tintColor
+            intervalTitleCell?.detailTextLabel?.textColor = view.tintColor
         } else {
             let detailTextColor = TBRPHelper.detailTextColor()
             frequencyTitleCell?.detailTextLabel?.textColor = detailTextColor
@@ -438,7 +435,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
                     cell?.textLabel?.text = internationalControl?.localized("TBRPCustomRepeatController.textLabel.frequency", comment: "Frequency")
                     cell?.detailTextLabel?.text = frequencies[(frequency?.rawValue)!]
                     if hasRepeatPicker() && repeatPickerIndexPath == NSIndexPath(forRow: 1, inSection: 0) {
-                        cell?.detailTextLabel?.textColor = tintColor
+                        cell?.detailTextLabel?.textColor = view.tintColor
                     } else {
                         cell?.detailTextLabel?.textColor = TBRPHelper.detailTextColor()
                     }
@@ -450,7 +447,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
                     
                     if hasRepeatPicker() && repeatPickerIndexPath == NSIndexPath(forRow: 2, inSection: 0) {
                         cell?.updateBottomSeparatorWithLeftX(TBRPHelper.leadingMargin())
-                        cell?.detailTextLabel?.textColor = tintColor
+                        cell?.detailTextLabel?.textColor = view.tintColor
                     } else {
                         cell?.updateBottomSeparatorWithLeftX(0)
                         cell?.detailTextLabel?.textColor = TBRPHelper.detailTextColor()
