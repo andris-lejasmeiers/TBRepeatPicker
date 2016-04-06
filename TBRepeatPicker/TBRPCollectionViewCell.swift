@@ -133,6 +133,7 @@ class TBRPCollectionViewCell: UITableViewCell, UICollectionViewDataSource, UICol
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(TBRPCollectionItemID, forIndexPath: indexPath) as! TBRPCollectionItem
+        cell.tintColor = tintColor
         
         if mode == .Days {
             let day = indexPath.row + 1
