@@ -324,39 +324,39 @@ public class TBRecurrence: NSObject {
     }
     
     // MARK: - Helper
-    func isDailyRecurrence() -> Bool {
+    public func isDailyRecurrence() -> Bool {
         return frequency == .Daily && interval == 1
     }
     
-    func isWeeklyRecurrence(occurrenceDate: NSDate) -> Bool {
+    public func isWeeklyRecurrence(occurrenceDate: NSDate) -> Bool {
         let occurrenceDateDayIndexInWeek = NSCalendar.dayIndexInWeek(occurrenceDate)
         
         return frequency == .Weekly && selectedWeekdays == [occurrenceDateDayIndexInWeek - 1] && interval == 1
     }
     
-    func isBiWeeklyRecurrence(occurrenceDate: NSDate) -> Bool {
+    public func isBiWeeklyRecurrence(occurrenceDate: NSDate) -> Bool {
         let occurrenceDateDayIndexInWeek = NSCalendar.dayIndexInWeek(occurrenceDate)
         
         return frequency == .Weekly && selectedWeekdays == [occurrenceDateDayIndexInWeek - 1] && interval == 2
     }
     
-    func isMonthlyRecurrence(occurrenceDate: NSDate) -> Bool {
+    public func isMonthlyRecurrence(occurrenceDate: NSDate) -> Bool {
         let occurrenceDateDayIndexInMonth = NSCalendar.dayIndexInMonth(occurrenceDate)
         
         return frequency == .Monthly && interval == 1 && byWeekNumber == false && selectedMonthdays == [occurrenceDateDayIndexInMonth]
     }
     
-    func isYearlyRecurrence(occurrenceDate: NSDate) -> Bool {
+    public func isYearlyRecurrence(occurrenceDate: NSDate) -> Bool {
         let occurrenceDateMonthIndexInYear = NSCalendar.monthIndexInYear(occurrenceDate)
         
         return frequency == .Yearly && interval == 1 && byWeekNumber == false && selectedMonths == [occurrenceDateMonthIndexInYear]
     }
     
-    func isWeekdayRecurrence() -> Bool {
+    public func isWeekdayRecurrence() -> Bool {
         return frequency == .Weekly && interval == 1 && selectedWeekdays == [1, 2, 3, 4, 5]
     }
     
-    func isCustomRecurrence(occurrenceDate: NSDate) -> Bool {
+    public func isCustomRecurrence(occurrenceDate: NSDate) -> Bool {
         return !isDailyRecurrence() && !isWeeklyRecurrence(occurrenceDate) && !isBiWeeklyRecurrence(occurrenceDate) && !isMonthlyRecurrence(occurrenceDate) && !isYearlyRecurrence(occurrenceDate)
     }
 }
