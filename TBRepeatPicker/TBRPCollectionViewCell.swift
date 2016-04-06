@@ -176,6 +176,7 @@ class TBRPCollectionViewCell: UITableViewCell, UICollectionViewDataSource, UICol
     // MARK: - UICollectionView delegate
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TBRPCollectionItem
+        cell.tintColor = tintColor
         
         if mode == .Days {
             let day = indexPath.row + 1
