@@ -10,7 +10,8 @@ Pod::Spec.new do |s|
   s.platform             = :ios, '8.0'
   s.requires_arc         = true
   s.source_files         = "TBRepeatPicker/*.swift"
-  s.resource_bundles     = { 'TBRepeatPicker' => ['TBRepeatPicker/Resources/*/*.png', 'TBRepeatPicker/Resources/*/*.lproj'] }
+  s.resource_bundles     = { 'TBRepeatPicker' => ['TBRepeatPicker/Resources/*/*.lproj'] }
   s.frameworks           = "Foundation", "UIKit"
+  s.resources            = 'TBRepeatPicker/Resources/*.xcassets'
 
 end

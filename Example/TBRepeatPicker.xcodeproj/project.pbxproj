@@ -7,35 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D30E7B081BB829FC00193D7F /* NSCalendar+TBRPAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30E7B071BB829FC00193D7F /* NSCalendar+TBRPAddition.swift */; settings = {ASSET_TAGS = (); }; };
-		D30E7B0C1BB83EBF00193D7F /* RangeReplaceableCollectionType+TBRPAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30E7B0B1BB83EBF00193D7F /* RangeReplaceableCollectionType+TBRPAddition.swift */; settings = {ASSET_TAGS = (); }; };
-		D31BE43E1BC6382300443B51 /* String+TBRPAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31BE43D1BC6382300443B51 /* String+TBRPAddition.swift */; settings = {ASSET_TAGS = (); }; };
-		D3902F8E1BC54EE700316ABA /* TBRecurrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3902F8D1BC54EE700316ABA /* TBRecurrence.swift */; settings = {ASSET_TAGS = (); }; };
-		D3902F901BC58D1800316ABA /* Array+TBRPAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3902F8F1BC58D1800316ABA /* Array+TBRPAddition.swift */; settings = {ASSET_TAGS = (); }; };
-		D39B02E11BBBD00F004AF10C /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B02E01BBBD00F004AF10C /* DemoViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		BFD589D81CB52E650008152C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD589D71CB52E650008152C /* Assets.xcassets */; };
+		D30E7B081BB829FC00193D7F /* NSCalendar+TBRPAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30E7B071BB829FC00193D7F /* NSCalendar+TBRPAddition.swift */; };
+		D30E7B0C1BB83EBF00193D7F /* RangeReplaceableCollectionType+TBRPAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30E7B0B1BB83EBF00193D7F /* RangeReplaceableCollectionType+TBRPAddition.swift */; };
+		D31BE43E1BC6382300443B51 /* String+TBRPAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31BE43D1BC6382300443B51 /* String+TBRPAddition.swift */; };
+		D3902F8E1BC54EE700316ABA /* TBRecurrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3902F8D1BC54EE700316ABA /* TBRecurrence.swift */; };
+		D3902F901BC58D1800316ABA /* Array+TBRPAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3902F8F1BC58D1800316ABA /* Array+TBRPAddition.swift */; };
+		D39B02E11BBBD00F004AF10C /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39B02E01BBBD00F004AF10C /* DemoViewController.swift */; };
 		D3A7C1EF1BB26EAD000605DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A7C1EE1BB26EAD000605DF /* AppDelegate.swift */; };
 		D3A7C1F41BB26EAD000605DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3A7C1F21BB26EAD000605DF /* Main.storyboard */; };
 		D3A7C1F61BB26EAD000605DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A7C1F51BB26EAD000605DF /* Assets.xcassets */; };
 		D3A7C1F91BB26EAD000605DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3A7C1F71BB26EAD000605DF /* LaunchScreen.storyboard */; };
-		D3A7C2081BB27589000605DF /* TBRepeatPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A7C2071BB27589000605DF /* TBRepeatPicker.swift */; settings = {ASSET_TAGS = (); }; };
-		D3A7C20A1BB2778D000605DF /* TBRPPresetRepeatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A7C2091BB2778D000605DF /* TBRPPresetRepeatController.swift */; settings = {ASSET_TAGS = (); }; };
-		D3A7C20C1BB277B8000605DF /* TBRPCustomRepeatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A7C20B1BB277B8000605DF /* TBRPCustomRepeatController.swift */; settings = {ASSET_TAGS = (); }; };
-		D3B8CBFC1BB945F70020938B /* TBRPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B8CBFB1BB945F70020938B /* TBRPHelper.swift */; settings = {ASSET_TAGS = (); }; };
-		D3BAE1721BC7AB6800CC2467 /* SwitchLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAE1711BC7AB6800CC2467 /* SwitchLanguageViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		D3BAE1741BC7D9E900CC2467 /* UIColor+TBRPAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAE1731BC7D9E900CC2467 /* UIColor+TBRPAddition.swift */; settings = {ASSET_TAGS = (); }; };
+		D3A7C2081BB27589000605DF /* TBRepeatPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A7C2071BB27589000605DF /* TBRepeatPicker.swift */; };
+		D3A7C20A1BB2778D000605DF /* TBRPPresetRepeatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A7C2091BB2778D000605DF /* TBRPPresetRepeatController.swift */; };
+		D3A7C20C1BB277B8000605DF /* TBRPCustomRepeatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A7C20B1BB277B8000605DF /* TBRPCustomRepeatController.swift */; };
+		D3B8CBFC1BB945F70020938B /* TBRPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B8CBFB1BB945F70020938B /* TBRPHelper.swift */; };
+		D3BAE1721BC7AB6800CC2467 /* SwitchLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAE1711BC7AB6800CC2467 /* SwitchLanguageViewController.swift */; };
+		D3BAE1741BC7D9E900CC2467 /* UIColor+TBRPAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BAE1731BC7D9E900CC2467 /* UIColor+TBRPAddition.swift */; };
 		D3DC1F7A1BBB8EDC008A8AB4 /* TBRPLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3DC1F7C1BBB8EDC008A8AB4 /* TBRPLocalizable.strings */; };
-		D3DC1F7F1BBB925F008A8AB4 /* TBRPInternationalControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DC1F7E1BBB925F008A8AB4 /* TBRPInternationalControl.swift */; settings = {ASSET_TAGS = (); }; };
-		D3E37D991BB39127000C8D47 /* TBRPPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E37D981BB39127000C8D47 /* TBRPPickerViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		D3E37DCA1BB4EAAB000C8D47 /* TBRP-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E37DC91BB4EAAB000C8D47 /* TBRP-Checkmark@2x.png */; settings = {ASSET_TAGS = (); }; };
-		D3E37DCC1BB4EB65000C8D47 /* TBRP-Checkmark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E37DCB1BB4EB65000C8D47 /* TBRP-Checkmark@3x.png */; settings = {ASSET_TAGS = (); }; };
-		D3E37DCE1BB4F85C000C8D47 /* TBRPSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E37DCD1BB4F85C000C8D47 /* TBRPSwitchCell.swift */; settings = {ASSET_TAGS = (); }; };
-		D3E37DD21BB507C6000C8D47 /* TBRPCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E37DD11BB507C6000C8D47 /* TBRPCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		D3E37DD41BB5111E000C8D47 /* TBRPCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E37DD31BB5111E000C8D47 /* TBRPCollectionItem.swift */; settings = {ASSET_TAGS = (); }; };
-		D3E37DD61BB51727000C8D47 /* TBRPCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E37DD51BB51727000C8D47 /* TBRPCollectionViewLayout.swift */; settings = {ASSET_TAGS = (); }; };
-		D3FA9E9A1BBA63AF0045F644 /* TBRPCustomRepeatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FA9E991BBA63AF0045F644 /* TBRPCustomRepeatCell.swift */; settings = {ASSET_TAGS = (); }; };
+		D3DC1F7F1BBB925F008A8AB4 /* TBRPInternationalControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DC1F7E1BBB925F008A8AB4 /* TBRPInternationalControl.swift */; };
+		D3E37D991BB39127000C8D47 /* TBRPPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E37D981BB39127000C8D47 /* TBRPPickerViewCell.swift */; };
+		D3E37DCE1BB4F85C000C8D47 /* TBRPSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E37DCD1BB4F85C000C8D47 /* TBRPSwitchCell.swift */; };
+		D3E37DD21BB507C6000C8D47 /* TBRPCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E37DD11BB507C6000C8D47 /* TBRPCollectionViewCell.swift */; };
+		D3E37DD41BB5111E000C8D47 /* TBRPCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E37DD31BB5111E000C8D47 /* TBRPCollectionItem.swift */; };
+		D3E37DD61BB51727000C8D47 /* TBRPCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E37DD51BB51727000C8D47 /* TBRPCollectionViewLayout.swift */; };
+		D3FA9E9A1BBA63AF0045F644 /* TBRPCustomRepeatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FA9E991BBA63AF0045F644 /* TBRPCustomRepeatCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BFD589D71CB52E650008152C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D30E7B071BB829FC00193D7F /* NSCalendar+TBRPAddition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCalendar+TBRPAddition.swift"; sourceTree = "<group>"; };
 		D30E7B0B1BB83EBF00193D7F /* RangeReplaceableCollectionType+TBRPAddition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RangeReplaceableCollectionType+TBRPAddition.swift"; sourceTree = "<group>"; };
 		D31BE43D1BC6382300443B51 /* String+TBRPAddition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+TBRPAddition.swift"; sourceTree = "<group>"; };
@@ -61,8 +61,6 @@
 		D3DC1F7D1BBB8EF1008A8AB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TBRPLocalizable.strings"; sourceTree = "<group>"; };
 		D3DC1F7E1BBB925F008A8AB4 /* TBRPInternationalControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBRPInternationalControl.swift; sourceTree = "<group>"; };
 		D3E37D981BB39127000C8D47 /* TBRPPickerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBRPPickerViewCell.swift; sourceTree = "<group>"; };
-		D3E37DC91BB4EAAB000C8D47 /* TBRP-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TBRP-Checkmark@2x.png"; sourceTree = "<group>"; };
-		D3E37DCB1BB4EB65000C8D47 /* TBRP-Checkmark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TBRP-Checkmark@3x.png"; sourceTree = "<group>"; };
 		D3E37DCD1BB4F85C000C8D47 /* TBRPSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBRPSwitchCell.swift; sourceTree = "<group>"; };
 		D3E37DD11BB507C6000C8D47 /* TBRPCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBRPCollectionViewCell.swift; sourceTree = "<group>"; };
 		D3E37DD31BB5111E000C8D47 /* TBRPCollectionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBRPCollectionItem.swift; sourceTree = "<group>"; };
@@ -144,7 +142,7 @@
 		D3A7C20D1BB2A435000605DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D3DC1F771BBB8E5E008A8AB4 /* Icons */,
+				BFD589D71CB52E650008152C /* Assets.xcassets */,
 				D3DC1F761BBB8E41008A8AB4 /* Localizations */,
 			);
 			path = Resources;
@@ -156,15 +154,6 @@
 				D3DC1F7C1BBB8EDC008A8AB4 /* TBRPLocalizable.strings */,
 			);
 			path = Localizations;
-			sourceTree = "<group>";
-		};
-		D3DC1F771BBB8E5E008A8AB4 /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				D3E37DC91BB4EAAB000C8D47 /* TBRP-Checkmark@2x.png */,
-				D3E37DCB1BB4EB65000C8D47 /* TBRP-Checkmark@3x.png */,
-			);
-			path = Icons;
 			sourceTree = "<group>";
 		};
 		D3E37DD01BB50743000C8D47 /* CustomView */ = {
@@ -241,12 +230,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3E37DCA1BB4EAAB000C8D47 /* TBRP-Checkmark@2x.png in Resources */,
 				D3DC1F7A1BBB8EDC008A8AB4 /* TBRPLocalizable.strings in Resources */,
 				D3A7C1F91BB26EAD000605DF /* LaunchScreen.storyboard in Resources */,
 				D3A7C1F61BB26EAD000605DF /* Assets.xcassets in Resources */,
+				BFD589D81CB52E650008152C /* Assets.xcassets in Resources */,
 				D3A7C1F41BB26EAD000605DF /* Main.storyboard in Resources */,
-				D3E37DCC1BB4EB65000C8D47 /* TBRP-Checkmark@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
