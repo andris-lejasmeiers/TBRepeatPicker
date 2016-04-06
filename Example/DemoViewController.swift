@@ -52,7 +52,7 @@ class DemoViewController: UIViewController, TBRepeatPickerDelegate, SwitchLangua
     }
     
     @IBAction func startPicking(sender: UIButton) {
-        let repeatPicker = TBRepeatPicker.initPicker(occurrenceDate, language: language, tintColor: tbBlueColor())
+        let repeatPicker = TBRepeatPicker.initPicker(occurrenceDate, language: language)
         repeatPicker.delegate = self
         
 //        recurrence = nil
