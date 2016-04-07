@@ -166,7 +166,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
     }
     
     private func isDaysCollectionCell(indexPath: NSIndexPath) -> Bool {
-        return indexPath == NSIndexPath(forRow: 2, inSection: 1) && frequency == .Monthly
+        return indexPath == NSIndexPath(forRow: 0, inSection: 1) && frequency == .Monthly
     }
     
     private func setupData() {
@@ -230,20 +230,20 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
     
     private func updateWeekPickerOptions () {
         if frequency == .Monthly {
-            tableView.beginUpdates()
-            if hasRepeatPicker() {
-                closeRepeatPicker()
-            }
-            
-            
-            weekPickerIndexPath = NSIndexPath(forRow: 2, inSection: 1)
-            tableView.reloadRowsAtIndexPaths([weekPickerIndexPath!], withRowAnimation: .Fade)
-            
-            if byWeekNumber == false {
-                weekPickerIndexPath = nil
-            }
-            
-            tableView.endUpdates()
+//            tableView.beginUpdates()
+//            if hasRepeatPicker() {
+//                closeRepeatPicker()
+//            }
+//            
+//            
+//            weekPickerIndexPath = NSIndexPath(forRow: 2, inSection: 1)
+//            tableView.reloadRowsAtIndexPaths([weekPickerIndexPath!], withRowAnimation: .Fade)
+//            
+//            if byWeekNumber == false {
+//                weekPickerIndexPath = nil
+//            }
+//            
+//            tableView.endUpdates()
         } else if frequency == .Yearly {
             tableView.beginUpdates()
             if hasRepeatPicker() {
@@ -335,7 +335,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
             if frequency == .Weekly {
                 return 7
             } else if frequency == .Monthly {
-                return 3
+                return 1
             } else if frequency == .Yearly {
                 return 1
             } else {
@@ -451,7 +451,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
                 
                 return cell!
             } else if frequency == .Monthly {
-                if indexPath.row == 2 {
+                if indexPath.row == 0 {
                     if byWeekNumber == true {
                         let cell = TBRPPickerViewCell(style: .Default, reuseIdentifier: TBRPPickerViewCellID, pickerStyle: .Week, language: language)
                         cell.delegate = self
