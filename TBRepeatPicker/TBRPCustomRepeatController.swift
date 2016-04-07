@@ -39,7 +39,6 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
         didSet {
             setupData()
             updateFrequencyTitleCell()
-            updateIntervalTitleCell()
             updateMoreOptions()
             
             recurrence.frequency = frequency!
@@ -47,8 +46,6 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
     }
     var interval: Int? {
         didSet {
-            updateIntervalTitleCell()
-            
             recurrence.interval = interval!
         }
     }
@@ -94,23 +91,9 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
     private var pluralUnits = [String]()
     
     private let frequencyTitleIndexpath = NSIndexPath(forRow: 0, inSection: 0)
-    private var intervalTitleIndexpath: NSIndexPath? {
-        get {
-            if hasRepeatPicker() && repeatPickerIndexPath == NSIndexPath(forRow: 1, inSection: 0) {
-                return NSIndexPath(forRow: 2, inSection: 0)
-            } else {
-                return NSIndexPath(forRow: 1, inSection: 0)
-            }
-        }
-    }
     private var frequencyTitleCell: TBRPCustomRepeatCell? {
         get {
             return tableView.cellForRowAtIndexPath(frequencyTitleIndexpath) as? TBRPCustomRepeatCell
-        }
-    }
-    private var intervalTitleCell: TBRPCustomRepeatCell? {
-        get {
-            return tableView.cellForRowAtIndexPath(intervalTitleIndexpath!) as? TBRPCustomRepeatCell
         }
     }
     private var repeatPickerIndexPath: NSIndexPath?
@@ -201,24 +184,12 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
         frequencyTitleCell?.detailTextLabel?.text = frequencies[(frequency?.rawValue)!]
     }
     
-    private func updateIntervalTitleCell() {
-        intervalTitleCell?.detailTextLabel?.text = unitString()
-        
-        if hasRepeatPicker() && repeatPickerIndexPath == NSIndexPath(forRow: 2, inSection: 0) {
-            let cell = tableView.cellForRowAtIndexPath(repeatPickerIndexPath!) as! TBRPPickerViewCell
-            cell.unit = unit()
-        }
-    }
-    
     private func updateDetailTextColor() {
         if repeatPickerIndexPath == NSIndexPath(forRow: 1, inSection: 0) {
             frequencyTitleCell?.detailTextLabel?.textColor = view.tintColor
-        } else if repeatPickerIndexPath == NSIndexPath(forRow: 2, inSection: 0) {
-            intervalTitleCell?.detailTextLabel?.textColor = view.tintColor
         } else {
             let detailTextColor = TBRPHelper.detailTextColor()
             frequencyTitleCell?.detailTextLabel?.textColor = detailTextColor
-            intervalTitleCell?.detailTextLabel?.textColor = detailTextColor
         }
     }
     
@@ -289,7 +260,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
             tableView.endUpdates()
         }
         
-        updateIntervalCellBottomSeparator()
+//        updateIntervalCellBottomSeparator()
     }
     
     private func updateFooterTitle() {
@@ -325,13 +296,13 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
         }
     }
     
-    private func updateIntervalCellBottomSeparator() {
-        if hasRepeatPicker() && intervalTitleIndexpath!.row == 1 {
-            intervalTitleCell?.updateBottomSeparatorWithLeftX(TBRPHelper.leadingMargin())
-        } else {
-            intervalTitleCell?.updateBottomSeparatorWithLeftX(0)
-        }
-    }
+//    private func updateIntervalCellBottomSeparator() {
+//        if hasRepeatPicker() && intervalTitleIndexpath!.row == 1 {
+//            intervalTitleCell?.updateBottomSeparatorWithLeftX(TBRPHelper.leadingMargin())
+//        } else {
+//            intervalTitleCell?.updateBottomSeparatorWithLeftX(0)
+//        }
+//    }
     
     private func updateYearlyWeekCellBottomSeparator() {
         let yearlyWeekCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as! TBRPSwitchCell
@@ -356,9 +327,9 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             if hasRepeatPicker() {
-                return 3
-            } else {
                 return 2
+            } else {
+                return 1
             }
         } else if section == 1 {
             if frequency == .Weekly {
@@ -441,17 +412,17 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
                     }
                     
                     cell?.addSectionTopSeparator()
-                } else if indexPath == intervalTitleIndexpath {
-                    cell?.textLabel?.text = internationalControl?.localized("TBRPCustomRepeatController.textLabel.interval", comment: "Every")
-                    cell?.detailTextLabel?.text = unitString()
-                    
-                    if hasRepeatPicker() && repeatPickerIndexPath == NSIndexPath(forRow: 2, inSection: 0) {
-                        cell?.updateBottomSeparatorWithLeftX(TBRPHelper.leadingMargin())
-                        cell?.detailTextLabel?.textColor = view.tintColor
-                    } else {
-                        cell?.updateBottomSeparatorWithLeftX(0)
-                        cell?.detailTextLabel?.textColor = TBRPHelper.detailTextColor()
-                    }
+//                } else if indexPath == intervalTitleIndexpath {
+//                    cell?.textLabel?.text = internationalControl?.localized("TBRPCustomRepeatController.textLabel.interval", comment: "Every")
+//                    cell?.detailTextLabel?.text = unitString()
+//                    
+//                    if hasRepeatPicker() && repeatPickerIndexPath == NSIndexPath(forRow: 2, inSection: 0) {
+//                        cell?.updateBottomSeparatorWithLeftX(TBRPHelper.leadingMargin())
+//                        cell?.detailTextLabel?.textColor = view.tintColor
+//                    } else {
+//                        cell?.updateBottomSeparatorWithLeftX(0)
+//                        cell?.detailTextLabel?.textColor = TBRPHelper.detailTextColor()
+//                    }
                 }
                 
                 return cell!
@@ -608,7 +579,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
                 
                 tableView.endUpdates()
                 
-                updateIntervalCellBottomSeparator()
+//                updateIntervalCellBottomSeparator()
                 updateDetailTextColor()
             } else if indexPath.section == 1 {
                 if frequency == .Weekly {
@@ -617,7 +588,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
                         closeRepeatPicker()
                         tableView.endUpdates()
                         
-                        updateIntervalCellBottomSeparator()
+//                        updateIntervalCellBottomSeparator()
                     }
                     
                     let cell = tableView.cellForRowAtIndexPath(indexPath)
@@ -672,7 +643,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
                 closeRepeatPicker()
                 tableView.endUpdates()
                 
-                updateIntervalCellBottomSeparator()
+//                updateIntervalCellBottomSeparator()
             }
             
             if component == 0 {
@@ -703,7 +674,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
             closeRepeatPicker()
             tableView.endUpdates()
             
-            updateIntervalCellBottomSeparator()
+//            updateIntervalCellBottomSeparator()
         }
         
         selectedMonthdays = days
@@ -717,7 +688,7 @@ class TBRPCustomRepeatController: UITableViewController, TBRPPickerCellDelegate,
             closeRepeatPicker()
             tableView.endUpdates()
             
-            updateIntervalCellBottomSeparator()
+//            updateIntervalCellBottomSeparator()
         }
         
         selectedMonths = months

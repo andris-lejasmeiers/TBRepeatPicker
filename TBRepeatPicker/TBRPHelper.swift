@@ -85,7 +85,7 @@ public class TBRPHelper {
     class func frequencies(language: TBRPLanguage) -> [String] {
         let internationalControl = TBRPInternationalControl(language: language)
         
-        return [internationalControl.localized("TBRPHelper.frequencies.daily", comment: "Daily"),internationalControl.localized("TBRPHelper.frequencies.weekly", comment: "Weekly"), internationalControl.localized("TBRPHelper.frequencies.monthly", comment: "Monthly"), internationalControl.localized("TBRPHelper.frequencies.yearly", comment: "Yearly")]
+        return [internationalControl.localized("TBRPHelper.frequencies.daily", comment: "Daily"),internationalControl.localized("TBRPHelper.frequencies.weekly", comment: "Weekly"), internationalControl.localized("TBRPHelper.frequencies.monthly", comment: "Monthly")]
     }
     
     class func units(language: TBRPLanguage) -> [String] {
@@ -101,17 +101,15 @@ public class TBRPHelper {
     }
     
     class func presetRepeats(language: TBRPLanguage) -> [String] {
-        let internationalControl = TBRPInternationalControl(language: language)
-        
-        return [internationalControl.localized("TBRPHelper.presetRepeat.never", comment: "Never"), internationalControl.localized("TBRPHelper.presetRepeat.everyDay", comment: "Every Day"), internationalControl.localized("TBRPHelper.presetRepeat.everyWeek", comment: "Every Week"), internationalControl.localized("TBRPHelper.presetRepeat.everyTwoWeeks", comment: "Every 2 Weeks"), internationalControl.localized("TBRPHelper.presetRepeat.everyMonth", comment: "Every Month"), internationalControl.localized("TBRPHelper.presetRepeat.everyYear", comment: "Every Year")]
+        return ["Never", "Every Day", "Every Weekday"]
     }
     
     class func daysInWeekPicker(language: TBRPLanguage) -> [String] {
         let internationalControl = TBRPInternationalControl(language: language)
         let commonWeekdays = weekdays(language)
-        let additionDays = [internationalControl.localized("TBRPHelper.daysInWeekPicker.day", comment: "day"), internationalControl.localized("TBRPHelper.daysInWeekPicker.weekday", comment: "weekday"), internationalControl.localized("TBRPHelper.daysInWeekPicker.weekendDay", comment: "weekend day")]
+//        let additionDays = [internationalControl.localized("TBRPHelper.daysInWeekPicker.day", comment: "day"), internationalControl.localized("TBRPHelper.daysInWeekPicker.weekday", comment: "weekday"), internationalControl.localized("TBRPHelper.daysInWeekPicker.weekendDay", comment: "weekend day")]
         
-        return commonWeekdays + additionDays
+        return commonWeekdays// + additionDays
     }
     
     class func numbersInWeekPicker(language: TBRPLanguage) -> [String] {

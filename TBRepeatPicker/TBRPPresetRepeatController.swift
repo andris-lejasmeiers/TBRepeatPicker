@@ -67,14 +67,8 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             selectedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
         } else if recurrence?.isDailyRecurrence() == true {
             selectedIndexPath = NSIndexPath(forRow: 1, inSection: 0)
-        } else if recurrence?.isWeeklyRecurrence(occurrenceDate) == true {
+        } else if recurrence?.isWeekdayRecurrence() == true {
             selectedIndexPath = NSIndexPath(forRow: 2, inSection: 0)
-        } else if recurrence?.isBiWeeklyRecurrence(occurrenceDate) == true {
-            selectedIndexPath = NSIndexPath(forRow: 3, inSection: 0)
-        } else if recurrence?.isMonthlyRecurrence(occurrenceDate) == true {
-            selectedIndexPath = NSIndexPath(forRow: 4, inSection: 0)
-        } else if recurrence?.isYearlyRecurrence(occurrenceDate) == true {
-            selectedIndexPath = NSIndexPath(forRow: 5, inSection: 0)
         } else {
             selectedIndexPath = NSIndexPath(forRow: 0, inSection: 1)
         }
@@ -93,16 +87,7 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             recurrence = TBRecurrence.dailyRecurrence(occurrenceDate)
         
         case 2:
-            recurrence = TBRecurrence.weeklyRecurrence(occurrenceDate)
-            
-        case 3:
-            recurrence = TBRecurrence.biWeeklyRecurrence(occurrenceDate)
-            
-        case 4:
-            recurrence = TBRecurrence.monthlyRecurrence(occurrenceDate)
-            
-        case 5:
-            recurrence = TBRecurrence.yearlyRecurrence(occurrenceDate)
+            recurrence = TBRecurrence.weekdayRecurrence(occurrenceDate)
             
         default:
             break

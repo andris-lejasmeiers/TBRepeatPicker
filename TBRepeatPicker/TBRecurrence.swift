@@ -188,10 +188,6 @@ public class TBRecurrence: NSObject {
         return initWeekly(1, selectedWeekdays: [], occurrenceDate: occurrenceDate)
     }
     
-    class func biWeeklyRecurrence(occurrenceDate: NSDate) -> TBRecurrence {
-        return initWeekly(2, selectedWeekdays: [], occurrenceDate: occurrenceDate)
-    }
-    
     class func monthlyRecurrence(occurrenceDate: NSDate) -> TBRecurrence {
         return initMonthly(1, selectedMonthdays: [], occurrenceDate: occurrenceDate)
     }
@@ -328,35 +324,11 @@ public class TBRecurrence: NSObject {
         return frequency == .Daily && interval == 1
     }
     
-    public func isWeeklyRecurrence(occurrenceDate: NSDate) -> Bool {
-        let occurrenceDateDayIndexInWeek = NSCalendar.dayIndexInWeek(occurrenceDate)
-        
-        return frequency == .Weekly && selectedWeekdays == [occurrenceDateDayIndexInWeek - 1] && interval == 1
-    }
-    
-    public func isBiWeeklyRecurrence(occurrenceDate: NSDate) -> Bool {
-        let occurrenceDateDayIndexInWeek = NSCalendar.dayIndexInWeek(occurrenceDate)
-        
-        return frequency == .Weekly && selectedWeekdays == [occurrenceDateDayIndexInWeek - 1] && interval == 2
-    }
-    
-    public func isMonthlyRecurrence(occurrenceDate: NSDate) -> Bool {
-        let occurrenceDateDayIndexInMonth = NSCalendar.dayIndexInMonth(occurrenceDate)
-        
-        return frequency == .Monthly && interval == 1 && byWeekNumber == false && selectedMonthdays == [occurrenceDateDayIndexInMonth]
-    }
-    
-    public func isYearlyRecurrence(occurrenceDate: NSDate) -> Bool {
-        let occurrenceDateMonthIndexInYear = NSCalendar.monthIndexInYear(occurrenceDate)
-        
-        return frequency == .Yearly && interval == 1 && byWeekNumber == false && selectedMonths == [occurrenceDateMonthIndexInYear]
-    }
-    
     public func isWeekdayRecurrence() -> Bool {
         return frequency == .Weekly && interval == 1 && selectedWeekdays == [1, 2, 3, 4, 5]
     }
     
     public func isCustomRecurrence(occurrenceDate: NSDate) -> Bool {
-        return !isDailyRecurrence() && !isWeeklyRecurrence(occurrenceDate) && !isBiWeeklyRecurrence(occurrenceDate) && !isMonthlyRecurrence(occurrenceDate) && !isYearlyRecurrence(occurrenceDate)
+        return !isDailyRecurrence() && !isWeekdayRecurrence()
     }
 }
