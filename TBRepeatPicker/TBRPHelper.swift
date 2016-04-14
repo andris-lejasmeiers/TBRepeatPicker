@@ -144,15 +144,15 @@ public class TBRPHelper {
         
         if recurrence.frequency == .Daily {
             // Daily
-            return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Event will occur every %@."), unitString!)
+            return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Repeat every %@"), unitString!)
         } else if recurrence.frequency == .Weekly {
             // Weekly
             let occurrenceDateDayIndexInWeek = NSCalendar.dayIndexInWeek(occurrenceDate)
             
             if recurrence.selectedWeekdays == [occurrenceDateDayIndexInWeek - 1] {
-                return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Event will occur every %@."), unitString!)
+                return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Repeat every %@"), unitString!)
             } else if recurrence.isWeekdayRecurrence() {
-                return internationalControl.localized("RecurrenceString.weekdayRecurrence", comment: "Event will occur every weekday.")
+                return internationalControl.localized("RecurrenceString.weekdayRecurrence", comment: "Repeat every weekday")
             } else if recurrence.selectedWeekdays == [0, 1, 2, 3, 4, 5, 6] && recurrence.interval == 1 {
                 return recurrenceString(TBRecurrence.dailyRecurrence(occurrenceDate), occurrenceDate: occurrenceDate, language: language)
             } else {
@@ -182,7 +182,7 @@ public class TBRPHelper {
                     weekdaysString += internationalControl.localized("RecurrenceString.element.on.weekly", comment: "on")
                 }
                 
-                return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Event will occur every %@ %@"), unitString!, weekdaysString)
+                return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Repeat every %@ %@"), unitString!, weekdaysString)
             }
             
         } else if recurrence.frequency == .Monthly {
@@ -200,12 +200,12 @@ public class TBRPHelper {
                     weekNumberString.removeSubstring(" ")
                 }
                 
-                return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Event will occur every %@ %@"), unitString!, weekNumberString)
+                return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Repeat every %@ %@"), unitString!, weekNumberString)
             } else {
                 let occurrenceDateDayIndexInMonth = NSCalendar.dayIndexInMonth(occurrenceDate)
                 
                 if recurrence.selectedMonthdays == [occurrenceDateDayIndexInMonth] {
-                    return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Event will occur every %@."), unitString!)
+                    return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Repeat every %@."), unitString!)
                 } else {
                     var monthdaysString: String
                     if language == .English {
@@ -237,7 +237,7 @@ public class TBRPHelper {
                         monthdaysString += internationalControl.localized("RecurrenceString.element.on.monthly", comment: "")
                     }
                     
-                    return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Event will occur every %@ %@"), unitString!, monthdaysString)
+                    return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Repeat every %@ %@"), unitString!, monthdaysString)
                 }
             }
         } else if recurrence.frequency == .Yearly {
@@ -279,16 +279,16 @@ public class TBRPHelper {
                 }
                 
                 if language == .English {
-                    return String(format: internationalControl.localized("RecurrenceString.yearlyByWeekNoString", comment: "Event will occur every %@ %@ %@"), unitString!, pickedWeekdayString, monthsString)
+                    return String(format: internationalControl.localized("RecurrenceString.yearlyByWeekNoString", comment: "Repeat every %@ %@ %@"), unitString!, pickedWeekdayString, monthsString)
                 } else {
-                    return String(format: internationalControl.localized("RecurrenceString.yearlyByWeekNoString", comment: "Event will occur every %@ %@ %@"), unitString!, monthsString, pickedWeekdayString)
+                    return String(format: internationalControl.localized("RecurrenceString.yearlyByWeekNoString", comment: "Repeat every %@ %@ %@"), unitString!, monthsString, pickedWeekdayString)
                 }
                 
             } else {
                 let occurrenceDateMonthIndexInYear = NSCalendar.monthIndexInYear(occurrenceDate)
                 
                 if recurrence.selectedMonths == [occurrenceDateMonthIndexInYear] {
-                    return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Event will occur every %@."), unitString!)
+                    return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Repeat every %@"), unitString!)
                 } else {
                     var monthsString: String
                     if language == .English {
@@ -322,7 +322,7 @@ public class TBRPHelper {
                         monthsString += internationalControl.localized("RecurrenceString.element.on.yearlyMonths", comment: "in")
                     }
                     
-                    return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Event will occur every %@ %@"), unitString!, monthsString)
+                    return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Repeat every %@ %@"), unitString!, monthsString)
                 }
             }
             
