@@ -107,7 +107,7 @@ public class TBRecurrence: NSObject {
     public var pickedWeekday: TBRPWeekPickerDay = .Sunday
     
     // MARK: - Initialization
-    convenience init(occurrenceDate: NSDate) {
+    public convenience init(occurrenceDate: NSDate) {
         self.init()
         
         let occurrenceDateDayIndexInWeek = NSCalendar.dayIndexInWeek(occurrenceDate)
