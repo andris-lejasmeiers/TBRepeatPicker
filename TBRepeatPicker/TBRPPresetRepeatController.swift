@@ -65,10 +65,8 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
     private func setupSelectedIndexPath(recurrence: TBRecurrence?) {
         if recurrence == nil {
             selectedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
-        } else if recurrence?.isDailyRecurrence() == true {
-            selectedIndexPath = NSIndexPath(forRow: 1, inSection: 0)
         } else if recurrence?.isWeekdayRecurrence() == true {
-            selectedIndexPath = NSIndexPath(forRow: 2, inSection: 0)
+            selectedIndexPath = NSIndexPath(forRow: 1, inSection: 0)
         } else {
             selectedIndexPath = NSIndexPath(forRow: 0, inSection: 1)
         }
@@ -84,9 +82,6 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             recurrence = nil
             
         case 1:
-            recurrence = TBRecurrence.dailyRecurrence(occurrenceDate)
-        
-        case 2:
             recurrence = TBRecurrence.weekdayRecurrence(occurrenceDate)
             
         default:

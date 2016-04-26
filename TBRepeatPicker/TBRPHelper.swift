@@ -101,7 +101,7 @@ public class TBRPHelper {
     }
     
     class func presetRepeats(language: TBRPLanguage) -> [String] {
-        return ["Never", "Every Day", "Every Weekday"]
+        return ["Never", "Every Weekday"]
     }
     
     class func daysInWeekPicker(language: TBRPLanguage) -> [String] {
