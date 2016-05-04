@@ -125,7 +125,7 @@ class TBRPPickerViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewD
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerStyle == .Frequency {
-            return 3
+            return 2
         } else if pickerStyle == .Interval {
             if component == 0 {
                 return TBRPPickerMaxRowCount

@@ -9,9 +9,9 @@
 import Foundation
 
 @objc public enum TBRPFrequency: Int {
-    case Daily = 0
-    case Weekly = 1
-    case Monthly = 2
+    case Daily = 2
+    case Weekly = 0
+    case Monthly = 1
     case Yearly = 3
 }
 
@@ -44,7 +44,7 @@ public class TBRecurrence: NSObject {
     * TBRPFrequency.Monthly
     * TBRPFrequency.Yearly
     */
-    public var frequency: TBRPFrequency = .Daily
+    public var frequency: TBRPFrequency = .Weekly
     
     /** The interval between each frequency iteration. For example, when in a daily frequency, an interval of 1 means that event will occur every day, and an interval of 3 means that event will occur every 3 days. The default interval is 1.
     */

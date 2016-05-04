@@ -65,8 +65,10 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
     private func setupSelectedIndexPath(recurrence: TBRecurrence?) {
         if recurrence == nil {
             selectedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
-        } else if recurrence?.isWeekdayRecurrence() == true {
+        } else if recurrence?.isDailyRecurrence() == true {
             selectedIndexPath = NSIndexPath(forRow: 1, inSection: 0)
+        } else if recurrence?.isWeekdayRecurrence() == true {
+            selectedIndexPath = NSIndexPath(forRow: 2, inSection: 0)
         } else {
             selectedIndexPath = NSIndexPath(forRow: 0, inSection: 1)
         }
@@ -82,6 +84,9 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             recurrence = nil
             
         case 1:
+            recurrence = TBRecurrence.dailyRecurrence(occurrenceDate)
+        
+        case 2:
             recurrence = TBRecurrence.weekdayRecurrence(occurrenceDate)
             
         default:
@@ -179,10 +184,17 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             customRepeatController.occurrenceDate = occurrenceDate
             customRepeatController.language = language
             
-            if let _ = recurrence {
-                customRepeatController.recurrence = recurrence!
+            if let recurrence = recurrence {
+                switch recurrence.frequency {
+                case .Daily:
+                    let customRecurrence = TBRecurrence.weeklyRecurrence(occurrenceDate)
+                    customRecurrence.selectedWeekdays = [0, 1, 2, 3, 4, 5, 6]
+                    customRepeatController.recurrence = customRecurrence
+                default:
+                    customRepeatController.recurrence = recurrence
+                }
             } else {
-                customRepeatController.recurrence = TBRecurrence.dailyRecurrence(occurrenceDate)
+                customRepeatController.recurrence = TBRecurrence.weeklyRecurrence(occurrenceDate)
             }
             customRepeatController.delegate = self
             

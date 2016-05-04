@@ -85,13 +85,13 @@ public class TBRPHelper {
     class func frequencies(language: TBRPLanguage) -> [String] {
         let internationalControl = TBRPInternationalControl(language: language)
         
-        return [internationalControl.localized("TBRPHelper.frequencies.daily", comment: "Daily"),internationalControl.localized("TBRPHelper.frequencies.weekly", comment: "Weekly"), internationalControl.localized("TBRPHelper.frequencies.monthly", comment: "Monthly")]
+        return [internationalControl.localized("TBRPHelper.frequencies.weekly", comment: "Weekly"), internationalControl.localized("TBRPHelper.frequencies.monthly", comment: "Monthly"), internationalControl.localized("TBRPHelper.frequencies.daily", comment: "Daily"), internationalControl.localized("TBRPHelper.frequencies.yearly", comment: "Yearly")]
     }
     
     class func units(language: TBRPLanguage) -> [String] {
         let internationalControl = TBRPInternationalControl(language: language)
         
-        return [internationalControl.localized("TBRPHelper.units.day", comment: "Day"), internationalControl.localized("TBRPHelper.units.week", comment: "Week"), internationalControl.localized("TBRPHelper.units.month", comment: "Month"), internationalControl.localized("TBRPHelper.units.year", comment: "Year")]
+        return [internationalControl.localized("TBRPHelper.units.week", comment: "Week"), internationalControl.localized("TBRPHelper.units.month", comment: "Month"), internationalControl.localized("TBRPHelper.units.day", comment: "Day"), internationalControl.localized("TBRPHelper.units.year", comment: "Year")]
     }
     
     class func pluralUnits(language: TBRPLanguage) -> [String] {
@@ -101,7 +101,7 @@ public class TBRPHelper {
     }
     
     class func presetRepeats(language: TBRPLanguage) -> [String] {
-        return ["Never", "Every Weekday"]
+        return ["Never", "Every Day", "Every Weekday"]
     }
     
     class func daysInWeekPicker(language: TBRPLanguage) -> [String] {
@@ -149,9 +149,7 @@ public class TBRPHelper {
             // Weekly
             let occurrenceDateDayIndexInWeek = NSCalendar.dayIndexInWeek(occurrenceDate)
             
-            if recurrence.selectedWeekdays == [occurrenceDateDayIndexInWeek - 1] {
-                return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Repeat every %@"), unitString!)
-            } else if recurrence.isWeekdayRecurrence() {
+            if recurrence.isWeekdayRecurrence() {
                 return internationalControl.localized("RecurrenceString.weekdayRecurrence", comment: "Repeat every weekday")
             } else if recurrence.selectedWeekdays == [0, 1, 2, 3, 4, 5, 6] && recurrence.interval == 1 {
                 return recurrenceString(TBRecurrence.dailyRecurrence(occurrenceDate), occurrenceDate: occurrenceDate, language: language)
@@ -204,41 +202,37 @@ public class TBRPHelper {
             } else {
                 let occurrenceDateDayIndexInMonth = NSCalendar.dayIndexInMonth(occurrenceDate)
                 
-                if recurrence.selectedMonthdays == [occurrenceDateDayIndexInMonth] {
-                    return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Repeat every %@."), unitString!)
+                var monthdaysString: String
+                if language == .English {
+                    monthdaysString = internationalControl.localized("RecurrenceString.element.on.monthly", comment: "on the") + " " + englishDayString(recurrence.selectedMonthdays.first!)
+                } else if language == .Korean {
+                    monthdaysString = String(format: internationalControl.localized("RecurrenceString.element.day", comment: ""), recurrence.selectedMonthdays.first!)
                 } else {
-                    var monthdaysString: String
-                    if language == .English {
-                        monthdaysString = internationalControl.localized("RecurrenceString.element.on.monthly", comment: "on the") + " " + englishDayString(recurrence.selectedMonthdays.first!)
-                    } else if language == .Korean {
-                        monthdaysString = String(format: internationalControl.localized("RecurrenceString.element.day", comment: ""), recurrence.selectedMonthdays.first!)
-                    } else {
-                        monthdaysString = internationalControl.localized("RecurrenceString.element.on.monthly", comment: "on the") + String(format: internationalControl.localized("RecurrenceString.element.day", comment: ""), recurrence.selectedMonthdays.first!)
-                    }
-                    
-                    for i in 1..<recurrence.selectedMonthdays.count {
-                        var prefixStr: String?
-                        if i == recurrence.selectedMonthdays.count - 1 {
-                            prefixStr = " " + internationalControl.localized("RecurrenceString.element.and", comment: "and")
-                        } else {
-                            prefixStr = internationalControl.localized("RecurrenceString.element.comma", comment: ",")
-                        }
-                        
-                        if language == .English {
-                            monthdaysString += prefixStr! + " " + englishDayString(recurrence.selectedMonthdays[i])
-                        } else {
-                            monthdaysString += prefixStr! + " " + String(format: internationalControl.localized("RecurrenceString.element.day", comment: ""), recurrence.selectedMonthdays[i])
-                        }
-                    }
-                    
-                    if language != .English && language != .Korean {
-                        monthdaysString.removeSubstring(" ")
-                    } else if language == .Korean {
-                        monthdaysString += internationalControl.localized("RecurrenceString.element.on.monthly", comment: "")
-                    }
-                    
-                    return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Repeat every %@ %@"), unitString!, monthdaysString)
+                    monthdaysString = internationalControl.localized("RecurrenceString.element.on.monthly", comment: "on the") + String(format: internationalControl.localized("RecurrenceString.element.day", comment: ""), recurrence.selectedMonthdays.first!)
                 }
+                
+                for i in 1..<recurrence.selectedMonthdays.count {
+                    var prefixStr: String?
+                    if i == recurrence.selectedMonthdays.count - 1 {
+                        prefixStr = " " + internationalControl.localized("RecurrenceString.element.and", comment: "and")
+                    } else {
+                        prefixStr = internationalControl.localized("RecurrenceString.element.comma", comment: ",")
+                    }
+                    
+                    if language == .English {
+                        monthdaysString += prefixStr! + " " + englishDayString(recurrence.selectedMonthdays[i])
+                    } else {
+                        monthdaysString += prefixStr! + " " + String(format: internationalControl.localized("RecurrenceString.element.day", comment: ""), recurrence.selectedMonthdays[i])
+                    }
+                }
+                
+                if language != .English && language != .Korean {
+                    monthdaysString.removeSubstring(" ")
+                } else if language == .Korean {
+                    monthdaysString += internationalControl.localized("RecurrenceString.element.on.monthly", comment: "")
+                }
+                
+                return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Repeat every %@ %@"), unitString!, monthdaysString)
             }
         } else if recurrence.frequency == .Yearly {
             // Yearly
@@ -287,45 +281,41 @@ public class TBRPHelper {
             } else {
                 let occurrenceDateMonthIndexInYear = NSCalendar.monthIndexInYear(occurrenceDate)
                 
-                if recurrence.selectedMonths == [occurrenceDateMonthIndexInYear] {
-                    return String(format: internationalControl.localized("RecurrenceString.presetRepeat", comment: "Repeat every %@"), unitString!)
+                var monthsString: String
+                if language == .English {
+                    monthsString = internationalControl.localized("RecurrenceString.element.on.yearlyMonths", comment: "in") + " " + completeYearMonths(language)[recurrence.selectedMonths.first! - 1]
+                } else if language == .Korean {
+                    monthsString = completeYearMonths(language)[recurrence.selectedMonths.first! - 1]
                 } else {
-                    var monthsString: String
-                    if language == .English {
-                        monthsString = internationalControl.localized("RecurrenceString.element.on.yearlyMonths", comment: "in") + " " + completeYearMonths(language)[recurrence.selectedMonths.first! - 1]
-                    } else if language == .Korean {
-                        monthsString = completeYearMonths(language)[recurrence.selectedMonths.first! - 1]
-                    } else {
-                        monthsString = internationalControl.localized("RecurrenceString.element.on.yearlyMonths", comment: "in") + yearMonths(language)[recurrence.selectedMonths.first! - 1]
-                    }
-                    
-                    for i in 1..<recurrence.selectedMonths.count {
-                        var prefixStr: String?
-                        if i == recurrence.selectedMonths.count - 1 {
-                            prefixStr = " " + internationalControl.localized("RecurrenceString.element.and", comment: "and")
-                        } else {
-                            prefixStr = internationalControl.localized("RecurrenceString.element.comma", comment: ",")
-                        }
-                        
-                        if language == .English {
-                            monthsString += prefixStr! + " " + completeYearMonths(language)[recurrence.selectedMonths[i] - 1]
-                        } else {
-                            monthsString += prefixStr! + " " + yearMonths(language)[recurrence.selectedMonths[i] - 1]
-                        }
-                    }
-                    
-                    if language != .English && language != .Korean {
-                        monthsString.removeSubstring(" ")
-                    }
-                    
-                    if language == .Korean {
-                        monthsString += internationalControl.localized("RecurrenceString.element.on.yearlyMonths", comment: "in")
-                    }
-                    
-                    return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Repeat every %@ %@"), unitString!, monthsString)
+                    monthsString = internationalControl.localized("RecurrenceString.element.on.yearlyMonths", comment: "in") + yearMonths(language)[recurrence.selectedMonths.first! - 1]
                 }
+                
+                for i in 1..<recurrence.selectedMonths.count {
+                    var prefixStr: String?
+                    if i == recurrence.selectedMonths.count - 1 {
+                        prefixStr = " " + internationalControl.localized("RecurrenceString.element.and", comment: "and")
+                    } else {
+                        prefixStr = internationalControl.localized("RecurrenceString.element.comma", comment: ",")
+                    }
+                    
+                    if language == .English {
+                        monthsString += prefixStr! + " " + completeYearMonths(language)[recurrence.selectedMonths[i] - 1]
+                    } else {
+                        monthsString += prefixStr! + " " + yearMonths(language)[recurrence.selectedMonths[i] - 1]
+                    }
+                }
+                
+                if language != .English && language != .Korean {
+                    monthsString.removeSubstring(" ")
+                }
+                
+                if language == .Korean {
+                    monthsString += internationalControl.localized("RecurrenceString.element.on.yearlyMonths", comment: "in")
+                }
+                
+                return String(format: internationalControl.localized("RecurrenceString.specifiedDaysOrMonths", comment: "Repeat every %@ %@"), unitString!, monthsString)
             }
-            
+        
         } else {
             return nil
         }
