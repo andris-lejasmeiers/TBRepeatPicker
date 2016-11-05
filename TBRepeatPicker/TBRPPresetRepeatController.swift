@@ -11,35 +11,35 @@ import UIKit
 private let TBRPPresetRepeatCellID = "TBRPPresetRepeatCell"
 
 @objc public protocol TBRepeatPickerDelegate {
-    func didPickRecurrence(recurrence: TBRecurrence?, repeatPicker: TBRepeatPicker)
+    func didPickRecurrence(_ recurrence: TBRecurrence?, repeatPicker: TBRepeatPicker)
 }
 
-public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeatControllerDelegate {
+open class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeatControllerDelegate {
     // MARK: - Public properties
-    public var occurrenceDate = NSDate()
-    public var language: TBRPLanguage = .English
-    public var delegate: TBRepeatPickerDelegate?
+    open var occurrenceDate = Date()
+    open var language: TBRPLanguage = .english
+    open var delegate: TBRepeatPickerDelegate?
     
-    public var recurrence: TBRecurrence? {
+    open var recurrence: TBRecurrence? {
         didSet {
             setupSelectedIndexPath(recurrence)
         }
     }
-    public var selectedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+    open var selectedIndexPath = IndexPath(row: 0, section: 0)
     
     // MARK: - Private properties
-    private var recurrenceBackup: TBRecurrence?
-    private var presetRepeats = [String]()
-    private var internationalControl: TBRPInternationalControl?
+    fileprivate var recurrenceBackup: TBRecurrence?
+    fileprivate var presetRepeats = [String]()
+    fileprivate var internationalControl: TBRPInternationalControl?
     
     // MARK: - View life cycle
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         commonInit()
     }
     
-    private func commonInit() {
+    fileprivate func commonInit() {
         internationalControl = TBRPInternationalControl(language: language)
         navigationItem.title = internationalControl?.localized("TBRPPresetRepeatController.navigation.title", comment: "Repeat")
         
@@ -50,7 +50,7 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
         }
     }
     
-    override public func didMoveToParentViewController(parent: UIViewController?) {
+    override open func didMove(toParentViewController parent: UIViewController?) {
         if parent == nil {
             // navigation was popped
             if TBRecurrence.isEqualRecurrence(recurrence, recurrence2: recurrenceBackup) == false {
@@ -62,30 +62,30 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
     }
     
     // MARK: - Helper
-    private func setupSelectedIndexPath(recurrence: TBRecurrence?) {
+    fileprivate func setupSelectedIndexPath(_ recurrence: TBRecurrence?) {
         if recurrence == nil {
-            selectedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+            selectedIndexPath = IndexPath(row: 0, section: 0)
         } else if recurrence?.isDailyRecurrence() == true {
-            selectedIndexPath = NSIndexPath(forRow: 1, inSection: 0)
+            selectedIndexPath = IndexPath(row: 1, section: 0)
         } else if recurrence?.isWeeklyRecurrence(occurrenceDate) == true {
-            selectedIndexPath = NSIndexPath(forRow: 2, inSection: 0)
+            selectedIndexPath = IndexPath(row: 2, section: 0)
         } else if recurrence?.isBiWeeklyRecurrence(occurrenceDate) == true {
-            selectedIndexPath = NSIndexPath(forRow: 3, inSection: 0)
+            selectedIndexPath = IndexPath(row: 3, section: 0)
         } else if recurrence?.isMonthlyRecurrence(occurrenceDate) == true {
-            selectedIndexPath = NSIndexPath(forRow: 4, inSection: 0)
+            selectedIndexPath = IndexPath(row: 4, section: 0)
         } else if recurrence?.isYearlyRecurrence(occurrenceDate) == true {
-            selectedIndexPath = NSIndexPath(forRow: 5, inSection: 0)
+            selectedIndexPath = IndexPath(row: 5, section: 0)
         } else {
-            selectedIndexPath = NSIndexPath(forRow: 0, inSection: 1)
+            selectedIndexPath = IndexPath(row: 0, section: 1)
         }
     }
     
-    private func updateRecurrence(indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
+    fileprivate func updateRecurrence(_ indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).section == 1 {
             return
         }
         
-        switch indexPath.row {
+        switch (indexPath as NSIndexPath).row {
         case 0:
             recurrence = nil
             
@@ -109,8 +109,8 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
         }
     }
     
-    private func updateFooterTitle() {
-        let footerView = tableView.footerViewForSection(1)
+    fileprivate func updateFooterTitle() {
+        let footerView = tableView.footerView(forSection: 1)
         
         tableView.beginUpdates()
         footerView?.textLabel?.text = footerTitle()
@@ -118,9 +118,9 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
         footerView?.setNeedsLayout()
     }
     
-    private func footerTitle() -> String? {
+    fileprivate func footerTitle() -> String? {
         if let _ = recurrence {
-            if selectedIndexPath.section == 0 {
+            if (selectedIndexPath as NSIndexPath).section == 0 {
                 return nil
             }
             return TBRPHelper.recurrenceString(recurrence!, occurrenceDate: occurrenceDate, language: language)
@@ -129,11 +129,11 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
     }
     
     // MARK: - Table view data source
-    override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override open func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    override public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return presetRepeats.count
         } else {
@@ -141,61 +141,61 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
         }
     }
     
-    override public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44.0
     }
     
-    override public func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    override open func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 1 && recurrence != nil {
             return footerTitle()
         }
         return nil
     }
     
-    override public func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        if view.isKindOfClass(UITableViewHeaderFooterView) {
+    override open func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        if view.isKind(of: UITableViewHeaderFooterView.self) {
             let tableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-            tableViewHeaderFooterView.textLabel?.font = UIFont.systemFontOfSize(CGFloat(13.0))
+            tableViewHeaderFooterView.textLabel?.font = UIFont.systemFont(ofSize: CGFloat(13.0))
         }
     }
     
-    override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(TBRPPresetRepeatCellID)
+    override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: TBRPPresetRepeatCellID)
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: TBRPPresetRepeatCellID)
+            cell = UITableViewCell(style: .default, reuseIdentifier: TBRPPresetRepeatCellID)
         }
         
-        if indexPath.section == 1 {
-            cell?.accessoryType = .DisclosureIndicator
+        if (indexPath as NSIndexPath).section == 1 {
+            cell?.accessoryType = .disclosureIndicator
             cell?.textLabel?.text = internationalControl?.localized("TBRPPresetRepeatController.textLabel.custom", comment: "Custom")
         } else {
-            cell?.accessoryType = .None
-            cell?.textLabel?.text = presetRepeats[indexPath.row]
+            cell?.accessoryType = .none
+            cell?.textLabel?.text = presetRepeats[(indexPath as NSIndexPath).row]
         }
         
-        cell?.imageView?.image = UIImage(named: "TBRP-Checkmark", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)?.imageWithRenderingMode(.AlwaysTemplate)
+        cell?.imageView?.image = UIImage(named: "TBRP-Checkmark", in: Bundle(for: type(of: self)), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         
         if indexPath == selectedIndexPath {
-            cell?.imageView?.hidden = false
+            cell?.imageView?.isHidden = false
         } else {
-            cell?.imageView?.hidden = true
+            cell?.imageView?.isHidden = true
         }
         
         return cell!
     }
 
     // MARK: - Table view delegate
-    override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let lastSelectedCell = tableView.cellForRowAtIndexPath(selectedIndexPath)
-        let currentSelectedCell = tableView.cellForRowAtIndexPath(indexPath)
+    override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let lastSelectedCell = tableView.cellForRow(at: selectedIndexPath)
+        let currentSelectedCell = tableView.cellForRow(at: indexPath)
         
-        lastSelectedCell?.imageView?.hidden = true
-        currentSelectedCell?.imageView?.hidden = false
+        lastSelectedCell?.imageView?.isHidden = true
+        currentSelectedCell?.imageView?.isHidden = false
         
         selectedIndexPath = indexPath
         
-        if indexPath.section == 1 {
-            let customRepeatController = TBRPCustomRepeatController(style: .Grouped)
+        if (indexPath as NSIndexPath).section == 1 {
+            let customRepeatController = TBRPCustomRepeatController(style: .grouped)
             customRepeatController.occurrenceDate = occurrenceDate
             customRepeatController.language = language
             
@@ -211,14 +211,14 @@ public class TBRPPresetRepeatController: UITableViewController, TBRPCustomRepeat
             updateRecurrence(indexPath)
             updateFooterTitle()
             
-            navigationController?.popViewControllerAnimated(true)
+            navigationController?.popViewController(animated: true)
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - TBRPCustomRepeatController delegate
-    func didFinishPickingCustomRecurrence(recurrence: TBRecurrence) {
+    func didFinishPickingCustomRecurrence(_ recurrence: TBRecurrence) {
         self.recurrence = recurrence
         updateFooterTitle()
         tableView.reloadData()
